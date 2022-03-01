@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 01, 2019 at 05:00 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Gazdă: 127.0.0.1:3306
+-- Timp de generare: iun. 26, 2021 la 10:55 PM
+-- Versiune server: 5.7.31
+-- Versiune PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,165 +18,176 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_shop`
+-- Bază de date: `shop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_admin`
+-- Structură tabel pentru tabel `tbl_admin`
 --
 
-CREATE TABLE `tbl_admin` (
-  `adminId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_admin`;
+CREATE TABLE IF NOT EXISTS `tbl_admin` (
+  `adminId` int(11) NOT NULL AUTO_INCREMENT,
   `adminName` varchar(255) NOT NULL,
   `adminUser` varchar(255) NOT NULL,
   `adminEmail` varchar(255) NOT NULL,
   `adminPass` varchar(150) NOT NULL,
-  `level` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `level` tinyint(4) NOT NULL,
+  PRIMARY KEY (`adminId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_admin`
+-- Eliminarea datelor din tabel `tbl_admin`
 --
 
 INSERT INTO `tbl_admin` (`adminId`, `adminName`, `adminUser`, `adminEmail`, `adminPass`, `level`) VALUES
-(1, 'Emon Chowdhury', 'admin', 'emonchy35@gmail.com', 'c93ccd78b2076528346216b3b2f701e6', 0);
+(1, 'Patricia', 'admin', 'admin@gmail.com', '8c11d5879f52b755e0d91038e550ef50', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_area`
+-- Structură tabel pentru tabel `tbl_area`
 --
 
-CREATE TABLE `tbl_area` (
-  `area_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_area`;
+CREATE TABLE IF NOT EXISTS `tbl_area` (
+  `area_id` int(11) NOT NULL AUTO_INCREMENT,
   `area_name` varchar(100) NOT NULL,
-  `city` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `city` varchar(11) NOT NULL,
+  PRIMARY KEY (`area_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_area`
+-- Eliminarea datelor din tabel `tbl_area`
 --
 
 INSERT INTO `tbl_area` (`area_id`, `area_name`, `city`) VALUES
-(1, 'Agrabad', '1'),
-(2, 'GEC Circle', '1'),
-(3, 'Muradpur', '1'),
-(4, 'Andorkilla', '1'),
-(5, 'Mirpur', '2'),
-(6, 'Gulshan', '2'),
-(7, 'Dhanmondi', '2');
+(1, 'Bistrita', '1'),
+(2, 'Beclean', '1'),
+(3, 'Nasaud', '1'),
+(4, 'Sangeorz-Bai', '1'),
+(5, 'Cluj-Napoca', '2'),
+(6, 'Campia-Turzii', '2'),
+(7, 'Dej', '2'),
+(8, 'Gherla', '2'),
+(9, 'Huedin', '2'),
+(10, 'Turda', '2'),
+(11, 'Suceava', '3'),
+(12, 'Falticeni', '3'),
+(13, 'Radauti', '3'),
+(14, 'Campulung Moldovenesc', '3'),
+(15, 'Vatra Dornei', '3'),
+(16, 'Targu-Mures', '4'),
+(17, 'Reghin', '4'),
+(18, 'Sighisoara', '4'),
+(19, 'Sovata', '4'),
+(20, 'Tarnaveni', '4'),
+(21, 'Ludus', '4'),
+(22, 'Zalau', '5'),
+(23, 'Jibou', '5'),
+(24, 'Cehu Silvaniei', '5'),
+(25, 'Simleu Silvaniei', '5');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_brand`
+-- Structură tabel pentru tabel `tbl_brand`
 --
 
-CREATE TABLE `tbl_brand` (
-  `brandId` int(11) NOT NULL,
-  `brandName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `tbl_brand`;
+CREATE TABLE IF NOT EXISTS `tbl_brand` (
+  `brandId` int(11) NOT NULL AUTO_INCREMENT,
+  `brandName` varchar(255) NOT NULL,
+  PRIMARY KEY (`brandId`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_brand`
+-- Eliminarea datelor din tabel `tbl_brand`
 --
 
 INSERT INTO `tbl_brand` (`brandId`, `brandName`) VALUES
-(1, ' Acer'),
-(2, ' Samsung'),
-(3, ' Iphone'),
-(4, 'Canon'),
-(5, ' Philips');
+(1, ' Zara'),
+(2, ' Bershka'),
+(3, ' Stradivarius'),
+(4, 'Pull&Bear'),
+(5, 'H&M'),
+(7, ' Adidas');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_cart`
+-- Structură tabel pentru tabel `tbl_cart`
 --
 
-CREATE TABLE `tbl_cart` (
-  `cartId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_cart`;
+CREATE TABLE IF NOT EXISTS `tbl_cart` (
+  `cartId` int(11) NOT NULL AUTO_INCREMENT,
   `sId` varchar(255) NOT NULL,
   `productId` int(11) NOT NULL,
   `productName` varchar(255) NOT NULL,
   `price` float(10,2) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`cartId`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_category`
+-- Structură tabel pentru tabel `tbl_category`
 --
 
-CREATE TABLE `tbl_category` (
-  `catId` int(11) NOT NULL,
-  `catName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `tbl_category`;
+CREATE TABLE IF NOT EXISTS `tbl_category` (
+  `catId` int(11) NOT NULL AUTO_INCREMENT,
+  `catName` varchar(255) NOT NULL,
+  PRIMARY KEY (`catId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_category`
+-- Eliminarea datelor din tabel `tbl_category`
 --
 
 INSERT INTO `tbl_category` (`catId`, `catName`) VALUES
-(1, ' Desktop'),
-(2, ' Laptop'),
-(3, ' Mobile Phones'),
-(4, ' Accessories'),
-(5, ' Software'),
-(6, ' Sports &amp; Fitness'),
-(7, ' Footwear'),
-(8, ' Jewellery'),
-(9, 'Clothing');
+(1, 'Shirt'),
+(2, ' Dress'),
+(3, 'Skirt');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_city`
+-- Structură tabel pentru tabel `tbl_city`
 --
 
-CREATE TABLE `tbl_city` (
-  `city_id` int(11) NOT NULL,
-  `city_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `tbl_city`;
+CREATE TABLE IF NOT EXISTS `tbl_city` (
+  `city_id` int(11) NOT NULL AUTO_INCREMENT,
+  `city_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`city_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_city`
+-- Eliminarea datelor din tabel `tbl_city`
 --
 
 INSERT INTO `tbl_city` (`city_id`, `city_name`) VALUES
-(1, 'Chattogram'),
-(2, 'Dhaka'),
-(3, 'Sylhet'),
-(4, 'Khulna'),
-(5, 'Rajshahi');
+(1, 'Bistrita-Nasaud'),
+(2, 'Cluj-Napoca'),
+(3, 'Suceava'),
+(4, 'Mures'),
+(5, 'Salaj');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_compare`
+-- Structură tabel pentru tabel `tbl_customer`
 --
 
-CREATE TABLE `tbl_compare` (
-  `compareId` int(11) NOT NULL,
-  `cmrId` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
-  `productName` varchar(255) NOT NULL,
-  `price` float(10,2) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_customer`
---
-
-CREATE TABLE `tbl_customer` (
-  `c_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_customer`;
+CREATE TABLE IF NOT EXISTS `tbl_customer` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `c_name` varchar(255) NOT NULL,
   `c_address` text NOT NULL,
   `c_city` varchar(30) NOT NULL,
@@ -184,26 +196,29 @@ CREATE TABLE `tbl_customer` (
   `c_phone` varchar(30) NOT NULL,
   `c_email` varchar(255) NOT NULL,
   `c_pass` varchar(32) NOT NULL,
-  `c_status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `c_status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`c_id`),
+  UNIQUE KEY `c_email` (`c_email`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_customer`
+-- Eliminarea datelor din tabel `tbl_customer`
 --
 
 INSERT INTO `tbl_customer` (`c_id`, `c_name`, `c_address`, `c_city`, `c_area`, `c_zip`, `c_phone`, `c_email`, `c_pass`, `c_status`) VALUES
-(1, 'Rahul Joy', '335,Baker Billa House.', '1', '1', '420', '01846467908', 'rahul@gmail.com', '202cb962ac59075b964b07152d234b70', 1),
-(2, 'Maikel', 'Dewanhat', '1', '1', '445', '01929255500', 'mikel@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1),
-(3, 'Kabir Singh', '12/A ,D-Block', '2', '7', '570', '01700688508', 'ks@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1);
+(4, 'Coman Patricia', 'Bistrita', '1', '1', '450025', '0753479397', 'coman@gmail.com', '823fec7a2632ea7b498c1d0d11c11377', 1),
+(7, 'Andreea', 'Cluj', '1', 'Select Area', '456789', '23456789045', 'andreea@gmail.com', '6c48441b0d58474e829857663a937488', 0),
+(13, 'admin', 'Bistrita', '1', '1', '420025', '0753479397', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_order`
+-- Structură tabel pentru tabel `tbl_order`
 --
 
-CREATE TABLE `tbl_order` (
-  `orderId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_order`;
+CREATE TABLE IF NOT EXISTS `tbl_order` (
+  `orderId` int(11) NOT NULL AUTO_INCREMENT,
   `cmrId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
   `productName` varchar(255) NOT NULL,
@@ -211,225 +226,93 @@ CREATE TABLE `tbl_order` (
   `price` float(10,2) NOT NULL,
   `image` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`orderId`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_order`
+-- Eliminarea datelor din tabel `tbl_order`
 --
 
 INSERT INTO `tbl_order` (`orderId`, `cmrId`, `productId`, `productName`, `quantity`, `price`, `image`, `date`, `status`) VALUES
-(4, 1, 4, 'Smart TV', 1, 403.66, 'uploads/845ab05fb0.jpg', '2019-06-17 07:34:14', 0),
-(5, 1, 8, 'DSLR Camera', 1, 420.60, 'uploads/7226e2a625.jpg', '2019-06-17 07:38:37', 0);
+(21, 4, 13, 'Orange dress', 8, 800.00, 'uploads/dc92482ccb.jpg', '2021-06-24 23:40:33', 1),
+(22, 4, 12, 'Black dress', 1, 60.00, 'uploads/22418bbc0b.jpg', '2021-06-25 12:36:35', 2),
+(24, 4, 9, 'White dress', 1, 40.00, 'uploads/a4337c5eee.jpg', '2021-06-26 01:16:22', 0),
+(25, 4, 12, 'Black dress', 1, 60.00, 'uploads/22418bbc0b.jpg', '2021-06-26 21:33:01', 0),
+(26, 13, 10, 'Green skirt', 1, 25.00, 'uploads/3d07e834ec.jpg', '2021-06-26 22:45:10', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_product`
+-- Structură tabel pentru tabel `tbl_product`
 --
 
-CREATE TABLE `tbl_product` (
-  `productId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_product`;
+CREATE TABLE IF NOT EXISTS `tbl_product` (
+  `productId` int(11) NOT NULL AUTO_INCREMENT,
   `productName` varchar(255) NOT NULL,
   `catId` int(11) NOT NULL,
   `brandId` int(11) NOT NULL,
   `body` text NOT NULL,
-  `price` float(10,3) NOT NULL,
+  `price` float(10,2) NOT NULL,
   `image` varchar(255) NOT NULL,
+  `gif` varchar(255) NOT NULL,
+  `image2` varchar(255) NOT NULL,
   `keywords` varchar(255) NOT NULL,
-  `type` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `type` tinyint(4) NOT NULL DEFAULT '0',
+  `sales` int(1) NOT NULL,
+  `size` varchar(6) NOT NULL,
+  `color` varchar(100) NOT NULL,
+  PRIMARY KEY (`productId`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tbl_product`
+-- Eliminarea datelor din tabel `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `body`, `price`, `image`, `keywords`, `type`) VALUES
-(1, 'Philips Dry Iron', 4, 5, '<p>The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.</p>', 505.220, 'uploads/09546abb10.png', 'Philips,Dry Iron', 0),
-(2, 'LED HD TV', 4, 2, '<p>The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.</p>', 550.000, 'uploads/4a25466214.jpg', 'Tv,HD Tv,LED', 1),
-(3, 'Blender Machine', 4, 5, '<p>The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.</p>', 230.970, 'uploads/f680b4ca87.png', 'Blender,Canon', 1),
-(4, 'Smart TV', 4, 2, '<p>The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.The product description will be here.</p>', 403.660, 'uploads/845ab05fb0.jpg', 'Samsung,Tv', 0),
-(8, 'DSLR Camera', 4, 4, '<p>Camera specifications will be give later</p>', 420.600, 'uploads/7226e2a625.jpg', 'Canon,Camera,DSLR', 1),
-(9, 'Iphone 5s', 3, 3, '<p>High configuration features phone with latest technologies</p>', 750.000, 'uploads/af8afc2712.jpg', 'Iphone,Mobile', 0),
-(10, 'Refrigerator(RT36FDJF)', 4, 2, '<p>Digital Inverter Compressor ,Multi Storage Box,Digital Display Panel,seperate ice box and many more.</p>', 980.000, 'uploads/60c40833d1.jpg', 'Samsung,Fridge,Refrigerator', 0),
-(11, 'Acer Charger Fan', 4, 1, '<p>Rechargeable fan with 4 hours backup</p>', 350.000, 'uploads/d75fecf6e6.jpg', 'Acer,Fan,Charger Fan', 1);
+INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `body`, `price`, `image`, `gif`, `image2`, `keywords`, `type`, `sales`, `size`, `color`) VALUES
+(1, 'White top', 1, 5, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 30.00, 'uploads/557008c80f.jpg', 'vv1.gif', 'prodd1.jpg', 'white top', 0, 1, 'XS', 'white'),
+(2, 'Red dress', 2, 2, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 90.00, 'uploads/08eb1a3814.jpg', 'gif2.gif', 'prodd2.jpg', 'red dress', 1, 0, 'S', 'red'),
+(3, 'White Shirt', 1, 5, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 40.00, 'uploads/89d8d95fc7.jpg', 'gif3.gif', 'prodd3.jpg\r\n', 'white shirt', 1, 1, 'M', 'white'),
+(4, 'Mini skirt', 3, 2, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 50.00, 'uploads/8cab3cae7d.jpg', 'gif4.gif', 'prodd4.jpg', 'mini skirt black white grey', 0, 1, 'XS', 'grey'),
+(8, 'Black winter dress', 2, 4, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 90.00, 'uploads/edbf65dbc7.jpg', 'gif5.gif', 'prodd5.jpg', 'black dress', 1, 0, 'XS', 'black'),
+(9, 'White dress', 2, 3, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 40.00, 'uploads/a4337c5eee.jpg', 'gif6.gif', 'prodd6.jpg', 'white dress', 0, 0, 'M', 'white'),
+(10, 'Green skirt', 3, 2, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 25.00, 'uploads/3d07e834ec.jpg', 'gif3.gif', 'prodd3.jpg', 'green skirt', 0, 1, 'S', 'green'),
+(11, 'Black summer dress', 2, 1, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 50.00, 'uploads/29bf762236.jpg', 'gif7.gif', 'prodd7.jpg', 'black summer dress', 1, 0, 'M', 'black'),
+(12, 'Black dress', 2, 4, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 60.00, 'uploads/22418bbc0b.jpg', 'gif8.gif', 'prodd8.jpg', 'Black summer dress', 0, 0, 'L', 'black'),
+(13, 'Orange dress', 2, 4, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 100.00, 'uploads/dc92482ccb.jpg', 'gif9.gif', 'prodd9.jpg', 'Orange dress summer', 0, 0, 'XS', 'orange'),
+(17, 'Striped dress', 2, 3, 'Material: 100% COTTON\r\nwashing: MACHINE WASH AT MAX.TEMP. 30 degrees C - MILD PROCESS\r\nbleaching: DO NOT BLEACH\r\ndrying: DO NOT TUMBLE DRY\r\nironing: IRON AT MAX. TEMP. OF 110 dregrees C WITHOUT STEAM\r\npreservation: DO NOT DRY CLEAN', 80.00, 'uploads/180548c864.jpg', 'gif10.gif', 'prodd10.jpg', 'long striped dress', 0, 1, 'XS', 'black and brown');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_rating`
+-- Structură tabel pentru tabel `tbl_wlist`
 --
 
-CREATE TABLE `tbl_rating` (
-  `id` int(11) NOT NULL,
-  `cmrId` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
-  `rating` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tbl_rating`
---
-
-INSERT INTO `tbl_rating` (`id`, `cmrId`, `productId`, `rating`) VALUES
-(1, 1, 9, 3),
-(2, 2, 9, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_wlist`
---
-
-CREATE TABLE `tbl_wlist` (
-  `wlistId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_wlist`;
+CREATE TABLE IF NOT EXISTS `tbl_wlist` (
+  `wlistId` int(11) NOT NULL AUTO_INCREMENT,
   `cmrId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
   `productName` varchar(100) NOT NULL,
   `price` float(10,2) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`wlistId`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Eliminarea datelor din tabel `tbl_wlist`
 --
 
---
--- Indexes for table `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`adminId`);
+INSERT INTO `tbl_wlist` (`wlistId`, `cmrId`, `productId`, `productName`, `price`, `image`) VALUES
+(23, 4, 9, 'White dress', 40.00, 'uploads/a4337c5eee.jpg'),
+(24, 4, 17, 'Striped dress', 80.00, 'uploads/180548c864.jpg'),
+(25, 13, 9, 'White dress', 40.00, 'uploads/a4337c5eee.jpg'),
+(26, 13, 2, 'Red dress', 90.00, 'uploads/08eb1a3814.jpg'),
+(27, 4, 2, 'Red dress', 90.00, 'uploads/08eb1a3814.jpg');
+COMMIT;
 
---
--- Indexes for table `tbl_area`
---
-ALTER TABLE `tbl_area`
-  ADD PRIMARY KEY (`area_id`);
-
---
--- Indexes for table `tbl_brand`
---
-ALTER TABLE `tbl_brand`
-  ADD PRIMARY KEY (`brandId`);
-
---
--- Indexes for table `tbl_cart`
---
-ALTER TABLE `tbl_cart`
-  ADD PRIMARY KEY (`cartId`);
-
---
--- Indexes for table `tbl_category`
---
-ALTER TABLE `tbl_category`
-  ADD PRIMARY KEY (`catId`);
-
---
--- Indexes for table `tbl_city`
---
-ALTER TABLE `tbl_city`
-  ADD PRIMARY KEY (`city_id`);
-
---
--- Indexes for table `tbl_compare`
---
-ALTER TABLE `tbl_compare`
-  ADD PRIMARY KEY (`compareId`);
-
---
--- Indexes for table `tbl_customer`
---
-ALTER TABLE `tbl_customer`
-  ADD PRIMARY KEY (`c_id`);
-
---
--- Indexes for table `tbl_order`
---
-ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`orderId`);
-
---
--- Indexes for table `tbl_product`
---
-ALTER TABLE `tbl_product`
-  ADD PRIMARY KEY (`productId`);
-
---
--- Indexes for table `tbl_rating`
---
-ALTER TABLE `tbl_rating`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_wlist`
---
-ALTER TABLE `tbl_wlist`
-  ADD PRIMARY KEY (`wlistId`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `tbl_area`
---
-ALTER TABLE `tbl_area`
-  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `tbl_brand`
---
-ALTER TABLE `tbl_brand`
-  MODIFY `brandId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `tbl_cart`
---
-ALTER TABLE `tbl_cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_category`
---
-ALTER TABLE `tbl_category`
-  MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `tbl_city`
---
-ALTER TABLE `tbl_city`
-  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `tbl_compare`
---
-ALTER TABLE `tbl_compare`
-  MODIFY `compareId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `tbl_customer`
---
-ALTER TABLE `tbl_customer`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tbl_order`
---
-ALTER TABLE `tbl_order`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `tbl_product`
---
-ALTER TABLE `tbl_product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `tbl_rating`
---
-ALTER TABLE `tbl_rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `tbl_wlist`
---
-ALTER TABLE `tbl_wlist`
-  MODIFY `wlistId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
